@@ -12,6 +12,3 @@ Run `npm run serve`;
 
 ## Deploying
 The app deploys to firebase hosting. Run `npm run deploy`;
-
-## Contributors
-- Mauricio Araldi, [@mauricioaraldi](https://github.com/mauricioaraldi/)

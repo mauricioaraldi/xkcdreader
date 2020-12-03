@@ -15,11 +15,13 @@
 
       <button>Enter</button>
     </form>
+
+    <router-link to="/newAccount" exact>Create new account</router-link>
   </div>
 </template>
 
 <script>
-  import { auth } from '../firebase'
+  import * as firebase from 'firebase'
 
   export default {
     name: 'Login',
@@ -34,15 +36,17 @@
       handleSubmit(ev) {
         ev.preventDefault();
 
-        auth
+        firebase.auth()
           .signInWithEmailAndPassword(this.email, this.password)
           .then(value => {
             if (!value.user || value.user.isAnonymous) {
-              throw new Error('User not found')
+              throw new Error('User not found');
             }
+
+            this.$router.push('/home');
           })
           .catch(error => {
-            console.error(error)
+            console.error(error);
           })
       }
     }
