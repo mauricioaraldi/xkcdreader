@@ -11,4 +11,9 @@ No results are guaranteed. Use this software at your own risk.
 Run `npm run serve`;
 
 ## Deploying
-The app deploys to firebase hosting. Run `npm run deploy`;
+
+### Front-end
+The VUEjs deploys to firebase hosting. Run `npm run deploy` and it's done!;
+
+### Back-end
+The NodeJS proxy is being automatically deployed to Heroku when anything is pushed to master;
