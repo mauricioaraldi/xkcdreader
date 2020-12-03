@@ -53,7 +53,6 @@
           .then(() => {
             return auth.signInWithEmailAndPassword(this.email, this.password);
           })
-          .then(() => this.$router.push('/home'))
           .catch(error => {
             console.error(error);
             alert(error.message);
