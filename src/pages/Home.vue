@@ -1,21 +1,29 @@
 <template>
-  <main>
-    <h1>XKCD Reader</h1>
+  <main class="flex-column">
+    <Header />
 
     <template v-if="loading">Loading!</template>
 
     <template v-else>
-      Comic
-      <input v-model="currentComic" type="number" />
+      <div id="comic-settings">
+        <label class="container form-label">
+          <span>Comic</span>
+          <input v-model="currentComic" type="number" />
+        </label>
+
+        <button id="favorite-button" @click="favorite(currentComic, true)">{{ this.favorites.has(parseInt(this.currentComic)) ? 'Unfavorite' : 'Favorite' }}</button>
+      </div>
+
       <img v-bind:src="comicInfo.img" />
-      <button @click="favorite(currentComic, true)">{{ this.favorites.has(parseInt(this.currentComic)) ? 'Unfavorite' : 'Favorite' }}</button>
     </template>
 
-    <div v-if="autoFavoriteComicInfo">
-      <h2>Auto Favorite</h2>
-      Each
-      <input v-model="autoFavoriteInterval" type="number" min=10 />
-      seconds
+    <div id="autoFavoriteContainer" class="flex-column" v-if="autoFavoriteComicInfo">
+      <h2 class="container">Auto Favorite</h2>
+
+      <label class="container form-label">
+        <span>Interval (in seconds)</span>
+        <input v-model="autoFavoriteInterval" type="number" min=10 />
+      </label>
 
       <p v-show="loadingAutoFavorite">Loading auto favorite</p>
 
@@ -26,10 +34,16 @@
 
 <script>
   import * as firebase from 'firebase';
+  import Header from '../components/Header'
+
+  const SERVER_URL = 'https://xkcdreader-proxy.herokuapp.com/';
 
   export default {
     name: 'Home',
     props: {},
+    components: {
+      Header,
+    },
     data() {
       const autoFavoriteInterval = 60;
       const favoriteTimer = setInterval(this.getAutoFavoriteImage, autoFavoriteInterval * 1000);
@@ -72,7 +86,6 @@
        * When autoFavorite interval in seconds change, recreate the interval that fetches the info
        */
       autoFavoriteInterval() {
-        console.log(11111, this.autoFavoriteInterval)
         clearInterval(this.favoriteTimer);
 
         if (this.autoFavoriteInterval < 10) {
@@ -116,7 +129,7 @@
       getComic(comicNumber = '') {
         return new Promise((resolve, reject) => {
           fetch(
-            `http://localhost:5678/${comicNumber}`,
+            `${SERVER_URL}${comicNumber}`,
             {
               method: 'GET',
               headers: new Headers({
@@ -209,4 +222,28 @@
 </script>
 
 <style scoped>
+  #comic-settings {
+    align-self: center;
+    align-items: center;
+    display: flex;
+  }
+
+  label {
+    margin: 8px auto;
+    padding: 8px;
+  }
+
+  #favorite-button {
+    margin-left: 32px;
+  }
+
+  #autoFavoriteContainer {
+    margin: 64px 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  #autoFavoriteContainer > h2 {
+    padding: 16px;
+  }
 </style>

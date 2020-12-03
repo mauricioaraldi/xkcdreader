@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <h1>XKCD Reader - Create account</h1>
+  <main class="flex-column">
+    <Header subtitle="Create account" />
 
-    <form @submit="handleSubmit">
+    <form class="container form" @submit="handleSubmit">
       <label>
         <span>Email</span>
         <input type="text" v-model="email" />
@@ -15,15 +15,21 @@
 
       <button>Create</button>
     </form>
-  </div>
+
+    <router-link to="/" exact>Go back</router-link>
+  </main>
 </template>
 
 <script>
-  import * as firebase from 'firebase'
+  import * as firebase from 'firebase';
+  import Header from '../components/Header';
 
   export default {
     name: 'NewAccount',
     props: {},
+    components: {
+      Header,
+    },
     data() {
       return {
         email: '',
@@ -57,4 +63,16 @@
 </script>
 
 <style scoped>
+  main {
+    text-align: center;
+  }
+
+  button {
+    margin-top: 8px;
+  }
+
+  a {
+    display: block;
+    margin-top: 32px;
+  }
 </style>
