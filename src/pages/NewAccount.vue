@@ -5,7 +5,7 @@
     <form class="container form flex-column" @submit="handleSubmit">
       <label>
         <span>Email</span>
-        <input type="text" v-model="email" />
+        <input type="email" v-model="email" />
       </label>
 
       <label>

@@ -10,7 +10,7 @@
       <div id="comic-settings">
         <label class="container form-label">
           <span>Comic</span>
-          <input v-model="currentComic" type="number" />
+          <input :value="currentComic" @input="debounceCurrentComic" type="number" />
         </label>
 
         <button id="favorite-button" @click="favorite(currentComic, true)">{{ this.favorites.has(parseInt(this.currentComic)) ? 'Unfavorite' : 'Favorite' }}</button>
@@ -36,6 +36,7 @@
 
 <script>
   import * as firebase from 'firebase';
+  import { debounce } from "debounce";
   import Header from '../components/Header'
 
   const SERVER_URL = 'https://xkcdreader-proxy.herokuapp.com/';
@@ -220,10 +221,20 @@
           })
       },
 
+      /**
+       * Logs the user out of the application
+       */
       logout(event) {
         event.preventDefault();
         firebase.auth().signOut();
       },
+
+      /**
+       * Debouncer for the current comic input
+       */
+      debounceCurrentComic: debounce(function(e) {
+        this.currentComic = e.target.value;
+      }, 800)
     },
   }
 </script>
