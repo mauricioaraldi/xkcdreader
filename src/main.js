@@ -18,6 +18,14 @@ firebase.initializeApp({
   appId: "1:588693180118:web:41094279ea0c3dfe9d8377"
 });
 
+firebase.auth().onAuthStateChanged(user => {
+  if (user && router.history.current.path !== '/home') {
+    router.push('/home');
+  } else if (router.history.current.path !== '/') {
+    router.push('/');
+  }
+});
+
 Vue.use(VueRouter);
 
 Vue.config.productionTip = false;
@@ -32,7 +40,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (!firebase.auth().currentUser && to.path !== '/') {
+  if (!firebase.auth().currentUser && (to.path !== '/' && to.path !== '/newAccount')) {
     return next('/');
   }
 

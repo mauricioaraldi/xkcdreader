@@ -46,8 +46,6 @@
             if (!value.user || value.user.isAnonymous) {
               throw new Error('User not found');
             }
-
-            this.$router.push('/home');
           })
           .catch(error => {
             console.error(error);

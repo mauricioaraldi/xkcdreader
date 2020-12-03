@@ -2,6 +2,8 @@
   <main class="flex-column outer-container">
     <Header />
 
+    <a id="logout" href="#" @click="logout">Logout</a>
+
     <template v-if="loading">Loading!</template>
 
     <template v-else>
@@ -217,11 +219,20 @@
             this.loadingAutoFavorite = false;
           })
       },
+
+      logout(event) {
+        event.preventDefault();
+        firebase.auth().signOut();
+      },
     },
   }
 </script>
 
 <style scoped>
+  #logout {
+    align-self: flex-end;
+  }
+
   #comic-settings {
     align-self: center;
     align-items: center;
