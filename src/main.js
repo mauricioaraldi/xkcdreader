@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import * as firebase from 'firebase';
 
 import App from './App.vue';
 import Login from './pages/Login';
 import NewAccount from './pages/NewAccount';
 import Home from './pages/Home';
-
-import * as firebase from 'firebase';
+import './registerServiceWorker'
 
 firebase.initializeApp({
   apiKey: "AIzaSyCJ6WCLQz1npFzHNMK6XRBc3oyJ-iQBE1U",
