@@ -1,5 +1,5 @@
 <template>
-  <main class="flex-column">
+  <main class="flex-column outer-container">
     <Header />
 
     <template v-if="loading">Loading!</template>
@@ -245,5 +245,13 @@
 
   #autoFavoriteContainer > h2 {
     padding: 16px;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  input {
+    max-width: 50px;
   }
 </style>

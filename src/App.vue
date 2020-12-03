@@ -20,7 +20,11 @@
 
   #app {
     margin: auto;
-    max-width: 780px;
+    max-width: 300px;
+  }
+
+  .outer-container {
+    width: 100%;
   }
 
   .flex-column {
@@ -37,9 +41,6 @@
   }
 
   .form {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
     padding: 8px;
   }
 
@@ -50,5 +51,23 @@
   .form span, .form-label span {
     display: block;
     text-align: left;
+  }
+
+  @media only screen and (min-width: 480px) {
+    #app {
+      max-width: 460px;
+    }
+  }
+
+  @media only screen and (min-width: 620px) {
+    #app {
+      max-width: 600px;
+    }
+  }
+
+  @media only screen and (min-width: 800px) {
+    #app {
+      max-width: 780px;
+    }
   }
 </style>

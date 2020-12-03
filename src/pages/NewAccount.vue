@@ -1,8 +1,8 @@
 <template>
-  <main class="flex-column">
+  <main class="flex-column outer-container">
     <Header subtitle="Create account" />
 
-    <form class="container form" @submit="handleSubmit">
+    <form class="container form flex-column" @submit="handleSubmit">
       <label>
         <span>Email</span>
         <input type="text" v-model="email" />
