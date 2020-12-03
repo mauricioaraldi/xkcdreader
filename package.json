@@ -9,7 +9,6 @@
     "deploy": "npm run build && firebase deploy"
   },
   "dependencies": {
-    "@vue/cli-plugin-pwa": "^4.5.9",
     "core-js": "^3.6.5",
     "firebase": "^7.24.0",
     "http-proxy": "^1.18.1",
@@ -22,11 +21,20 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-pwa": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "vue-template-compiler": "^2.6.11"
+  },
+  "vue": {
+    "pwa": {
+      "workboxPluginMode": "InjectManifest",
+      "workboxOptions": {
+        "swSrc": "src/sw.js"
+      }
+    }
   },
   "eslintConfig": {
     "root": true,
@@ -41,14 +49,6 @@
       "parser": "babel-eslint"
     },
     "rules": {}
-  },
-  "vue": {
-    "pwa": {
-      "workboxPluginMode": "InjectManifest",
-      "workboxOptions": {
-        "swSrc": "src/sw.js"
-      }
-    }
   },
   "browserslist": [
     "> 1%",
