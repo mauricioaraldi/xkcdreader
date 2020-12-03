@@ -2,6 +2,8 @@
 
 A XKCD (webcomic) reader, to display VueJS abilities.
 
+Currently the app can be accessed in https://xkcd-reader-6f9fc.web.app
+
 ## Disclaimer
 This project is licensed under GNU General Public License 3. See LICENSE file for more informations.
 
