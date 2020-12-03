@@ -10,7 +10,7 @@
       <div id="comic-settings">
         <label class="container form-label">
           <span>Comic</span>
-          <input :value="currentComic" @input="debounceCurrentComic" type="number" />
+          <input :value="currentComic" @input="debounceCurrentComic" type="number"  min="1" :max="latestComicNumber" />
         </label>
 
         <button id="favorite-button" @click="favorite(currentComic, true)">{{ this.favorites.has(parseInt(this.currentComic)) ? 'Unfavorite' : 'Favorite' }}</button>
@@ -69,6 +69,14 @@
        * When current comic number changes, fetches it's info, and saves the last seen comic number
        */
       currentComic() {
+        if (this.currentComic < 1) {
+          this.currentComic = 1;
+        }
+
+        if (this.currentComic > this.latestComicNumber) {
+          this.currentComic = this.latestComicNumber;
+        }
+
         this.loading = true;
 
         this.getComic(this.currentComic)
