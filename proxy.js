@@ -49,6 +49,6 @@ const server = http.createServer((req, res) => {
     });
 });
 
-server.listen(80, () => {
+server.listen(process.env.PORT || 5678, () => {
   console.log('Server running!');
 });
